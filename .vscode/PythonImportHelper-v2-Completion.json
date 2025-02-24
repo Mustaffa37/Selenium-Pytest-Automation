@@ -1,0 +1,112 @@
+[
+    {
+        "label": "webdriver",
+        "importPath": "selenium",
+        "description": "selenium",
+        "isExtraImport": true,
+        "detail": "selenium",
+        "documentation": {}
+    },
+    {
+        "label": "By",
+        "importPath": "selenium.webdriver.common.by",
+        "description": "selenium.webdriver.common.by",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.by",
+        "documentation": {}
+    },
+    {
+        "label": "Service",
+        "importPath": "selenium.webdriver.chrome.service",
+        "description": "selenium.webdriver.chrome.service",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.chrome.service",
+        "documentation": {}
+    },
+    {
+        "label": "pytest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "ChromeDriverManager",
+        "importPath": "webdriver_manager.chrome",
+        "description": "webdriver_manager.chrome",
+        "isExtraImport": true,
+        "detail": "webdriver_manager.chrome",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverWait",
+        "importPath": "selenium.webdriver.support.ui",
+        "description": "selenium.webdriver.support.ui",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.ui",
+        "documentation": {}
+    },
+    {
+        "label": "expected_conditions",
+        "importPath": "selenium.webdriver.support",
+        "description": "selenium.webdriver.support",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support",
+        "documentation": {}
+    },
+    {
+        "label": "Options",
+        "importPath": "selenium.webdriver.chrome.options",
+        "description": "selenium.webdriver.chrome.options",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.chrome.options",
+        "documentation": {}
+    },
+    {
+        "label": "driver",
+        "kind": 2,
+        "importPath": "tests.test_orangehrm",
+        "description": "tests.test_orangehrm",
+        "peekOfCode": "def driver():\n    \"\"\"Setup WebDriver with necessary options.\"\"\"\n    options = Options()\n    options.add_argument(\"--log-level=3\")  # Suppress logs\n    options.add_experimental_option(\"excludeSwitches\", [\"enable-logging\"])\n    service = Service(ChromeDriverManager().install())\n    driver = webdriver.Chrome(service=service, options=options)\n    driver.maximize_window()\n    driver.get(\"https://opensource-demo.orangehrmlive.com/web/index.php/auth/login\")\n    yield driver",
+        "detail": "tests.test_orangehrm",
+        "documentation": {}
+    },
+    {
+        "label": "test_login_valid",
+        "kind": 2,
+        "importPath": "tests.test_orangehrm",
+        "description": "tests.test_orangehrm",
+        "peekOfCode": "def test_login_valid(driver):\n    \"\"\"Verify login with valid credentials.\"\"\"\n    driver.implicitly_wait(10)\n    driver.find_element(By.NAME, \"username\").send_keys(\"Admin\")\n    driver.find_element(By.NAME, \"password\").send_keys(\"admin123\")\n    driver.find_element(By.CSS_SELECTOR, \"button[type='submit']\").click()\n    driver.implicitly_wait(10)\n    assert \"dashboard\" in driver.current_url.lower(), \"Login failed - Dashboard not found.\"\ndef test_login_invalid(driver):\n    \"\"\"Verify login fails with invalid credentials.\"\"\"",
+        "detail": "tests.test_orangehrm",
+        "documentation": {}
+    },
+    {
+        "label": "test_login_invalid",
+        "kind": 2,
+        "importPath": "tests.test_orangehrm",
+        "description": "tests.test_orangehrm",
+        "peekOfCode": "def test_login_invalid(driver):\n    \"\"\"Verify login fails with invalid credentials.\"\"\"\n    driver.implicitly_wait(10)\n    driver.find_element(By.NAME, \"username\").send_keys(\"WrongUser\")\n    driver.find_element(By.NAME, \"password\").send_keys(\"WrongPass\")\n    driver.find_element(By.CSS_SELECTOR, \"button[type='submit']\").click()\n    driver.implicitly_wait(10)\n    # Locator for the error message\n    error_message = driver.find_element(By.XPATH, \"//p[contains(@class, 'oxd-alert-content-text')]\").text\n    assert \"Invalid credentials\" in error_message, \"Error message not displayed for invalid login.\"",
+        "detail": "tests.test_orangehrm",
+        "documentation": {}
+    },
+    {
+        "label": "test_forgot_password",
+        "kind": 2,
+        "importPath": "tests.test_orangehrm",
+        "description": "tests.test_orangehrm",
+        "peekOfCode": "def test_forgot_password(driver):\n    \"\"\"Verify Forgot Password page opens when link is clicked.\"\"\"\n    wait = WebDriverWait(driver, 10)\n    try:\n        forgot_password_link = wait.until(\n            EC.element_to_be_clickable((By.XPATH, \"//p[contains(text(),'Forgot your password?')]\"))\n        )\n        forgot_password_link.click()\n        wait.until(EC.url_contains(\"requestPasswordResetCode\"))\n        assert \"requestpasswordresetcode\" in driver.current_url.lower(), \"Forgot Password page did not open.\"",
+        "detail": "tests.test_orangehrm",
+        "documentation": {}
+    },
+    {
+        "label": "test_logout",
+        "kind": 2,
+        "importPath": "tests.test_orangehrm",
+        "description": "tests.test_orangehrm",
+        "peekOfCode": "def test_logout(driver):\n    \"\"\"Verify user can log out successfully.\"\"\"\n    driver.implicitly_wait(10)\n    driver.find_element(By.NAME, \"username\").send_keys(\"Admin\")\n    driver.find_element(By.NAME, \"password\").send_keys(\"admin123\")\n    driver.find_element(By.CSS_SELECTOR, \"button[type='submit']\").click()\n    driver.implicitly_wait(10)\n    profile_icon = driver.find_element(By.XPATH, \"//p[contains(@class, 'oxd-userdropdown-name')]\")\n    profile_icon.click()\n    driver.implicitly_wait(5)",
+        "detail": "tests.test_orangehrm",
+        "documentation": {}
+    }
+]
