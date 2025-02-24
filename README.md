@@ -15,7 +15,7 @@ Before running the tests, ensure you have the following installed:
 
 ### 1️⃣ Clone the Repository
 ```sh
-git clone https://github.com/Mustaffa37/Selenium-Pytest-Project.git
+git clone https://github.com/Mustaffa37/Selenium-Pytest-Automation.git
 ```
 
 ### 2️⃣ Install Dependencies
